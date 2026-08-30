@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Release Sentinel — WebMCP Proof Arena</title>
+  <meta name="description" content="Give an AI agent real capability on your site without giving it authority. Watch an agent try to force a blocked software release through, fail, and repair the code instead.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23071014'/%3E%3Cpath d='M16 5l9 3.4v7c0 5.6-3.7 10.2-9 11.6-5.3-1.4-9-6-9-11.6v-7L16 5z' fill='none' stroke='%233ddca8' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cpath d='M11.6 16.2l3 3 5.8-6' fill='none' stroke='%233ddca8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/arena.css">
+</head>
+<body>
+  <main class="shell">
+    <header id="arenaHeader" class="hero panel">
+      <div>
+        <p class="eyebrow">CAPABILITY WITHOUT AUTHORITY · WEBMCP PROOF ARENA</p>
+        <h1>Release Sentinel <span>WebMCP Proof Arena</span></h1>
+        <p class="lede">Give the agent capability, never release authority. If it cannot change the proof, it has to change the software.</p>
+      </div>
+      <div class="heroStatus">
+        <div class="statusBlock"><span>WEBMCP</span><b id="webmcpStatus" class="pending">CHECKING</b><small id="webmcpCount">0 tools</small></div>
+        <div class="statusBlock"><span>CURRENT RELEASE</span><b id="currentVerdict" class="verdict no">—</b><small id="releaseId">loading</small></div>
+      </div>
+    </header>
+
+    <section id="guidedDemo" class="panel guidedDemo" aria-label="Guided demo">
+      <div class="guidedIntro">
+        <div>
+          <p class="eyebrow">NEW HERE? START WITH THIS</p>
+          <h2>Watch an AI agent try to cheat, fail, and then fix the bug for real</h2>
+          <p class="guidedLede">
+            A software release is blocked by a security bug. We hand an AI agent every tool this site
+            has and tell it to get the release approved. It cannot forge approval — so it has to
+            repair the actual code and earn a new one. This runs the whole story for you.
+          </p>
+        </div>
+        <div class="guidedActions">
+          <button id="runGuidedDemo" class="guidedPlay">▶ Run guided demo</button>
+          <button id="stopGuidedDemo" class="secondary" hidden>Stop</button>
+          <small class="guidedHint">~90 seconds · no setup · you can still click everything yourself</small>
+        </div>
+      </div>
+
+      <div id="guidedNarration" class="guidedNarration" hidden aria-live="polite">
+        <div class="guidedProgress">
+          <span id="guidedStepLabel">Step 1 of 8</span>
+          <div class="guidedTrack"><div id="guidedBar" class="guidedBar"></div></div>
+        </div>
+        <p id="guidedHeadline" class="guidedHeadline">Starting…</p>
+        <p id="guidedPlain" class="guidedPlain">Reading the current release.</p>
+        <p id="guidedTech" class="guidedTech">—</p>
+      </div>
+    </section>
+
+    <section id="trustStrip" class="trustStrip panel" aria-label="Authority chain">
+      <div class="authorityNode denied"><small>AI AGENT</small><strong>NO RELEASE AUTHORITY</strong></div>
+      <div class="arrow">→</div>
+      <div class="authorityNode"><small>WEBMCP</small><strong>BOUNDED CAPABILITY</strong></div>
+      <div class="arrow">→</div>
+      <div class="authorityNode"><small>API</small><strong>TYPED ADAPTER</strong></div>
+      <div class="arrow">→</div>
+      <div class="authorityNode"><small>EVIDENCE</small><strong>HASH / SIGNATURE BOUND</strong></div>
+      <div class="arrow">→</div>
+      <div class="authorityNode final"><small>GATEKEEPER</small><strong>FINAL AUTHORITY</strong></div>
+    </section>
+
+    <section class="twoCol">
+      <article id="attackPanel" class="panel sectionPanel">
+        <div class="sectionHead">
+          <div><p class="eyebrow">01 · BREAK THE PROOF</p><h2>Attack the Gate</h2><p class="plain">Can the agent talk its way to an approval? Try to make it happen.</p></div>
+          <span class="pill">CHALLENGE</span>
+        </div>
+        <p class="muted">The agent may run predefined attacks. It cannot edit the payload arbitrarily or set a verdict.</p>
+        <div class="buttonRow">
+          <button id="attackAgents" data-attack="force_agents_go">Force all agents to GO</button>
+          <button id="attackReplay" data-attack="replay_previous_go">Replay previous GO</button>
+        </div>
+        <div class="resultBox">
+          <span>Last result</span><b id="attackResult">Not run</b><small id="attackDetail">The deterministic boundary has not been challenged yet.</small>
+        </div>
+      </article>
+
+      <article class="panel sectionPanel proofCard">
+        <div class="sectionHead"><div><p class="eyebrow">PROOF CONTEXT</p><h2>Current release</h2><p class="plain">The exact code under review, identified by fingerprint, and why it is currently rejected.</p></div><span class="pill read">READ</span></div>
+        <dl class="kv">
+          <div><dt>Source SHA-256</dt><dd id="sourceHash">—</dd></div>
+          <div><dt>Policy SHA-256</dt><dd id="policyHash">—</dd></div>
+          <div><dt>Blocking finding</dt><dd id="blockingFinding">—</dd></div>
+          <div><dt>Decision authority</dt><dd id="decisionAuthority">—</dd></div>
+        </dl>
+        <button id="verifyProof" class="secondary">Verify proof context</button>
+        <p id="proofStatus" class="inlineStatus">Not verified in this session.</p>
+      </article>
+    </section>
+
+    <section id="coveragePanel" class="panel sectionPanel">
+      <div class="sectionHead coverageHead">
+        <div><p class="eyebrow">02 · MEASURE THE GAP</p><h2>Coverage Arena</h2><p class="plain"><b>Escapes</b> = bad code the fast security check waved through. <b>Overblocks</b> = safe code it rejected by mistake. Stricter rules cut one and raise the other — here you can see both.</p></div>
+        <div class="controls">
+          <select id="challengeSelect" aria-label="Coverage challenge">
+            <option value="cross-tenant">Cross-tenant authorization</option>
+            <option value="path-traversal">Path traversal containment</option>
+          </select>
+          <button id="compareCoverage">Compare Rev1 → Rev3</button>
+        </div>
+      </div>
+      <div id="revisionGrid" class="revisionGrid" aria-live="polite"></div>
+      <div class="scopeNote"><strong>Scoped measurement:</strong> <span id="scopeWarning">0 observed escapes is scoped to this fixed benchmark corpus.</span></div>
+    </section>
+
+    <section class="twoCol">
+      <article id="counterexamplePanel" class="panel sectionPanel">
+        <div class="sectionHead"><div><p class="eyebrow">03 · FIND THE MISS</p><h2>Counterexample</h2><p class="plain">One concrete piece of unsafe code the check let through, shrunk to the smallest version that still proves the bug.</p></div><span class="pill">CHALLENGE</span></div>
+        <p class="muted">Only package-owned benchmark identities are accepted. Caller-supplied source is never executed.</p>
+        <div class="buttonRow">
+          <button id="findCounterexample">Find observed escape</button>
+          <button id="minimizeCounterexample" class="secondary" disabled>Minimize</button>
+        </div>
+        <dl class="kv compact">
+          <div><dt>Candidate</dt><dd id="candidateId">—</dd></div>
+          <div><dt>Gate / Oracle</dt><dd id="candidateVerdicts">—</dd></div>
+          <div><dt>Candidate SHA</dt><dd id="candidateHash">—</dd></div>
+        </dl>
+        <pre id="minimizedSource">No minimized reproducer yet.</pre>
+      </article>
+
+      <article id="remediationPanel" class="panel sectionPanel">
+        <div class="sectionHead"><div><p class="eyebrow">04 · CHANGE SOFTWARE, NOT PROOF</p><h2>Bounded remediation</h2><p class="plain">The agent repairs the code and asks to be re-checked. New code means a new fingerprint, so the old rejection cannot be reused — and neither can an old approval.</p></div><span class="pill propose">PROPOSE</span></div>
+        <div class="controls">
+          <select id="demoScenarioSelect" aria-label="Package-owned remediation scenario">
+            <option value="demo-cross-tenant">Cross-tenant authorization</option>
+            <option value="demo-path-traversal">Path traversal containment</option>
+            <option value="demo-evidence-tamper">Evidence digest binding</option>
+          </select>
+        </div>
+        <div class="stateRail">
+          <span class="active">NO_GO</span><i>→</i><span id="proposalState">PROPOSAL</span><i>→</i><span id="candidateState">NEW HASH</span><i>→</i><span id="proofState">FRESH PROOF</span><i>→</i><span id="remediationVerdict">—</span>
+        </div>
+        <div class="buttonRow triple">
+          <button id="createProposal">1 · Propose</button>
+          <button id="rebuildCandidate" class="secondary" disabled>2 · Rebuild</button>
+          <button id="reverifyCandidate" class="secondary" disabled>3 · Re-verify</button>
+        </div>
+        <div class="hashTransition">
+          <div><span>OLD SOURCE</span><code id="oldHash">—</code></div>
+          <div class="hashArrow">→</div>
+          <div><span>NEW SOURCE</span><code id="newHash">—</code></div>
+        </div>
+        <p id="remediationDetail" class="inlineStatus">A proposal has no approval authority.</p>
+      </article>
+    </section>
+
+    <section class="panel timelinePanel">
+      <div class="sectionHead"><div><p class="eyebrow">AGENT ACTION TIMELINE</p><h2>Capability without authority</h2><p class="plain">Everything the agent did, in order. It could inspect, attack, measure and propose — it could never approve.</p></div><span id="timelineCount" class="pill read">0 EVENTS</span></div>
+      <ol id="agentTimeline" class="timeline"></ol>
+      <p id="webmcpFallback" class="fallback">Human controls remain available even when WebMCP is unavailable.</p>
+    </section>
+
+    <section id="humanProofCard" class="panel sectionPanel humanProofCard" hidden>
+      <div class="sectionHead">
+        <div><p class="eyebrow">05 · HUMAN PROOF CHECKPOINT</p><h2>Verify the agent’s result independently</h2></div>
+        <span class="pill read">HUMAN CHECK</span>
+      </div>
+      <p class="humanPrompt">Agent work is complete. Don’t trust it — verify it.</p>
+      <p class="muted">This check recomputes proof integrity and source-context binding for the freshly rebuilt candidate. It never changes release authority or the current release verdict.</p>
+      <dl class="kv humanProofFacts">
+        <div><dt>Old source</dt><dd id="humanOldHash">—</dd></div>
+        <div><dt>New source</dt><dd id="humanNewHash">—</dd></div>
+        <div><dt>Gatekeeper verdict</dt><dd id="humanGateVerdict">—</dd></div>
+        <div><dt>Decision authority</dt><dd id="humanGateAuthority">—</dd></div>
+      </dl>
+      <div class="humanProofRow">
+        <div class="resultBox humanProofResult">
+          <span>Human verification state</span>
+          <b id="humanProofStatus">UNVERIFIED BY HUMAN</b>
+          <small id="humanProofDetail">Fresh deterministic proof has not been independently checked in this browser session.</small>
+        </div>
+        <button id="verifyHumanProof" class="humanVerify">Verify fresh proof independently</button>
+      </div>
+    </section>
+
+    <footer>
+      <span>Release Sentinel · WebMCP Proof Arena · provenance in CHALLENGE_PROVENANCE.md</span>
+      <strong>The agent couldn't change the proof, so it had to change the software.</strong>
+    </footer>
+  </main>
+  <script src="/static/arena.js"></script>
+</body>
+</html>

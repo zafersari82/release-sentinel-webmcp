@@ -1,0 +1,29 @@
+Release Sentinel arena-confinement evidence
+Captured from a user-run Windows PowerShell + WSL session on 2026-08-20.
+This transcript was not executed by the cleanup environment.
+
+Command:
+wsl bash -lc './scripts/verify-arena-confinement.sh'
+
+Observed positive control:
+{"observed":{"capeff":"0000000000000000","interfaces":["lo"],"nofile":[64,64],"nonewprivs":"1","root_mount":"ro,relatime","seccomp":"2","submission_mount":"ro,relatime","tmp_mount":"rw,nosuid,nodev,noexec,relatime","uid":10001}}
+
+Negative-control classification:
+- live: writable root filesystem
+- live: running as root (uid 0)
+- live: network namespace attached
+- shadowed by earlier check: capabilities retained
+- UNTESTABLE ON THIS HOST: seccomp disabled (Docker Desktop kept seccomp=2)
+- live: no-new-privileges removed
+- live: file-descriptor limit raised
+- live: tmpfs hardening removed
+- live: submission mounted writable
+- live: attack.py is a symlink
+
+Host path:
+- refused: no env (arena marker missing)
+- refused: forged marker (unexpected worker uid)
+
+Summary reported by the verifier:
+live: 11    vacuous: 0    not isolatable here: 2
+NO VACUOUS ASSERTIONS. Every property this host could weaken was refused.

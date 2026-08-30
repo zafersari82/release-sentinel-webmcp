@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: release-sentinel-webmcp
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.webmcp
+    dockerContext: .
+    healthCheckPath: /v1/webmcp/tools
+    autoDeployTrigger: checksPass

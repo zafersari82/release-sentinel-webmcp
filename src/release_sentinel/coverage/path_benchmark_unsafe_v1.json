@@ -1,0 +1,122 @@
+[
+  {
+    "operator_id": "allow-all-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    return True\n"
+  },
+  {
+    "operator_id": "allow-all-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    return True\n"
+  },
+  {
+    "operator_id": "allow-all-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    return True\n"
+  },
+  {
+    "operator_id": "literal-dotdot-only-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    return requested_path != \"../secret.txt\"\n"
+  },
+  {
+    "operator_id": "literal-dotdot-only-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    return requested_path != \"../secret.txt\"\n"
+  },
+  {
+    "operator_id": "literal-dotdot-only-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    return requested_path != \"../secret.txt\"\n"
+  },
+  {
+    "operator_id": "leading-dotdot-only-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    return isinstance(requested_path, str) and not requested_path.startswith(\"../\")\n"
+  },
+  {
+    "operator_id": "leading-dotdot-only-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    return isinstance(requested_path, str) and not requested_path.startswith(\"../\")\n"
+  },
+  {
+    "operator_id": "leading-dotdot-only-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    return isinstance(requested_path, str) and not requested_path.startswith(\"../\")\n"
+  },
+  {
+    "operator_id": "lexical-only-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not base_dir.startswith(\"/\") or not requested_path:\n        return False\n    value = requested_path\n    for _ in range(3):\n        nxt = unquote(value)\n        if nxt == value:\n            break\n        value = nxt\n    value = value.replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "lexical-only-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not base_dir.startswith(\"/\") or not requested_path:\n        return False\n    value = requested_path\n    for _ in range(3):\n        nxt = unquote(value)\n        if nxt == value:\n            break\n        value = nxt\n    value = value.replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "lexical-only-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not base_dir.startswith(\"/\") or not requested_path:\n        return False\n    value = requested_path\n    for _ in range(3):\n        nxt = unquote(value)\n        if nxt == value:\n            break\n        value = nxt\n    value = value.replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "naive-resolved-prefix-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    return all(isinstance(value, str) for value in (base_dir, requested_path, resolved_target)) and bool(requested_path) and resolved_target.startswith(base_dir)\n"
+  },
+  {
+    "operator_id": "naive-resolved-prefix-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    return all(isinstance(value, str) for value in (base_dir, requested_path, resolved_target)) and bool(requested_path) and resolved_target.startswith(base_dir)\n"
+  },
+  {
+    "operator_id": "naive-resolved-prefix-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    return all(isinstance(value, str) for value in (base_dir, requested_path, resolved_target)) and bool(requested_path) and resolved_target.startswith(base_dir)\n"
+  },
+  {
+    "operator_id": "decode-once-lexical-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not requested_path:\n        return False\n    value = unquote(requested_path).replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "decode-once-lexical-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not requested_path:\n        return False\n    value = unquote(requested_path).replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "decode-once-lexical-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not requested_path:\n        return False\n    value = unquote(requested_path).replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "resolved-only-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    import posixpath\n    if not all(isinstance(value, str) for value in (base_dir, requested_path, resolved_target)) or not requested_path:\n        return False\n    base = posixpath.normpath(base_dir)\n    resolved = posixpath.normpath(resolved_target)\n    try:\n        return posixpath.commonpath((base, resolved)) == base\n    except ValueError:\n        return False\n"
+  },
+  {
+    "operator_id": "resolved-only-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    import posixpath\n    if not all(isinstance(value, str) for value in (base_dir, requested_path, resolved_target)) or not requested_path:\n        return False\n    base = posixpath.normpath(base_dir)\n    resolved = posixpath.normpath(resolved_target)\n    try:\n        return posixpath.commonpath((base, resolved)) == base\n    except ValueError:\n        return False\n"
+  },
+  {
+    "operator_id": "resolved-only-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    import posixpath\n    if not all(isinstance(value, str) for value in (base_dir, requested_path, resolved_target)) or not requested_path:\n        return False\n    base = posixpath.normpath(base_dir)\n    resolved = posixpath.normpath(resolved_target)\n    try:\n        return posixpath.commonpath((base, resolved)) == base\n    except ValueError:\n        return False\n"
+  },
+  {
+    "operator_id": "dotdot-substring-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    if not isinstance(requested_path, str) or not requested_path:\n        return False\n    return \"..\" not in requested_path\n"
+  },
+  {
+    "operator_id": "dotdot-substring-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    if not isinstance(requested_path, str) or not requested_path:\n        return False\n    return \"..\" not in requested_path\n"
+  },
+  {
+    "operator_id": "dotdot-substring-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    if not isinstance(requested_path, str) or not requested_path:\n        return False\n    return \"..\" not in requested_path\n"
+  },
+  {
+    "operator_id": "symlink-blind-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not requested_path:\n        return False\n    value = unquote(unquote(unquote(requested_path))).replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "symlink-blind-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not requested_path:\n        return False\n    value = unquote(unquote(unquote(requested_path))).replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "symlink-blind-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    import posixpath\n    from urllib.parse import unquote\n    if not all(isinstance(value, str) for value in (base_dir, requested_path)) or not requested_path:\n        return False\n    value = unquote(unquote(unquote(requested_path))).replace(\"\\\\\", \"/\")\n    if value.startswith(\"/\"):\n        return False\n    target = posixpath.normpath(posixpath.join(base_dir, value))\n    return posixpath.commonpath((posixpath.normpath(base_dir), target)) == posixpath.normpath(base_dir)\n"
+  },
+  {
+    "operator_id": "rev2-probe-overfit-01",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_1 = 1\n    blocked = {\"../secret.txt\", \"%2e%2e/secret.txt\", \"..\\\\secret.txt\", \"/etc/passwd\", \"link/passwd\", \"\"}\n    if requested_path in blocked:\n        return False\n    if resolved_target == \"/srv/assets_evil/file.txt\":\n        return False\n    if requested_path == \"images/logo.png\" and resolved_target == \"/srv/assets/images/logo.png\":\n        return True\n    return True\n"
+  },
+  {
+    "operator_id": "rev2-probe-overfit-02",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_2 = 2\n    blocked = {\"../secret.txt\", \"%2e%2e/secret.txt\", \"..\\\\secret.txt\", \"/etc/passwd\", \"link/passwd\", \"\"}\n    if requested_path in blocked:\n        return False\n    if resolved_target == \"/srv/assets_evil/file.txt\":\n        return False\n    if requested_path == \"images/logo.png\" and resolved_target == \"/srv/assets/images/logo.png\":\n        return True\n    return True\n"
+  },
+  {
+    "operator_id": "rev2-probe-overfit-03",
+    "source": "def can_open_path(base_dir, requested_path, resolved_target):\n    _variant_3 = 3\n    blocked = {\"../secret.txt\", \"%2e%2e/secret.txt\", \"..\\\\secret.txt\", \"/etc/passwd\", \"link/passwd\", \"\"}\n    if requested_path in blocked:\n        return False\n    if resolved_target == \"/srv/assets_evil/file.txt\":\n        return False\n    if requested_path == \"images/logo.png\" and resolved_target == \"/srv/assets/images/logo.png\":\n        return True\n    return True\n"
+  }
+]

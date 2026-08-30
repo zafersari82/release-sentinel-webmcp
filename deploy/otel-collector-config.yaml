@@ -1,0 +1,41 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: localhost:4317
+      http:
+        endpoint: localhost:4318
+processors:
+  batch:
+    send_batch_max_size: 200
+    send_batch_size: 1
+    timeout: 5s
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 65
+    spike_limit_percentage: 20
+  resourcedetection:
+    detectors: [gcp]
+    timeout: 10s
+  resource/gcp_project_id:
+    attributes:
+      - action: insert
+        key: gcp.project_id
+        value: ${GOOGLE_CLOUD_PROJECT}
+exporters:
+  otlp_grpc:
+    endpoint: telemetry.googleapis.com:443
+    balancer_name: pick_first
+    auth:
+      authenticator: googleclientauth
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  googleclientauth:
+service:
+  extensions: [health_check, googleclientauth]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [resourcedetection, resource/gcp_project_id, memory_limiter, batch]
+      exporters: [otlp_grpc]

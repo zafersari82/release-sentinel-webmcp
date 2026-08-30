@@ -1,0 +1,296 @@
+name: trust-gates
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Python suite + trust kernel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The Go toolchain is required, not optional: several trust-boundary
+      # tests start a real Gatekeeper process. Without it they skip, and a
+      # skipped guard test is indistinguishable from a passing one.
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e packages/agentseal
+          pip install -e '.[dev]'
+
+      - name: Test suite
+        run: pytest -q --strict-markers
+
+      - name: No guard test may silently skip
+        run: |
+          set -euo pipefail
+          # A green suite full of skips proves nothing. Fail if any of the
+          # tests that enforce the trust boundary did not actually execute.
+          pytest -q -rs \
+            tests/test_verdict_independence.py \
+            tests/test_release_authority.py \
+            tests/test_advisory_evidence_boundary.py \
+            tests/test_agentseal_battery.py \
+            tests/test_a2a_version_conformance.py \
+            tests/test_go_gatekeeper_a2a.py \
+            tests/test_remediation_authority.py \
+            tests/test_public_challenge.py 2>&1 | tee /tmp/guards.txt
+          if grep -qE "[0-9]+ skipped" /tmp/guards.txt; then
+            echo "::error::a trust-boundary test skipped instead of running"
+            exit 1
+          fi
+
+      - name: Frozen trust kernel
+        run: ./scripts/check-trust-kernel.sh
+
+      - name: Byte-compile
+        run: python -m compileall -q src packages/agentseal/src
+
+  agentseal:
+    name: agentseal library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e 'packages/agentseal[dev]'
+      - run: pytest -q packages/agentseal/tests
+
+      # The battery must be able to fail. A harness that reports SEALED on a
+      # known-vulnerable pipeline is worse than no harness, so prove it still
+      # detects one before trusting any green result above.
+      - name: Battery must still detect a vulnerable pipeline
+        run: |
+          python - <<'PY'
+          import sys
+          from agentseal import check_no_influence
+
+          def vulnerable(agent):
+              evidence = [{"finding_id": "F1", "severity": "HIGH", "blocking_eligible": True}]
+              try:
+                  agent(evidence)
+              except Exception:
+                  pass
+              return {"results": evidence}
+
+          report = check_no_influence(vulnerable, repeat=3)
+          if report.sealed:
+              print("::error::agentseal failed to detect a known-vulnerable pipeline")
+              print(report)
+              sys.exit(1)
+          print(f"battery live: detected {len(report.influenced)} influencing variants")
+          PY
+
+  go:
+    name: Go Gatekeeper
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+      - run: go vet ./...
+        working-directory: gatekeeper
+      - run: go test -race ./...
+        working-directory: gatekeeper
+      - run: go build -trimpath ./...
+        working-directory: gatekeeper
+
+  webmcp-submission:
+    name: WebMCP submission container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build judge container
+        run: docker build -f Dockerfile.webmcp -t release-sentinel-webmcp:ci .
+
+      - name: Smoke test signed-evidence WebMCP flow
+        run: |
+          set -euo pipefail
+          docker run -d --name release-sentinel-webmcp-ci -p 18080:8080 release-sentinel-webmcp:ci
+          cleanup() {
+            docker logs release-sentinel-webmcp-ci || true
+            docker rm -f release-sentinel-webmcp-ci >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+          for _ in $(seq 1 80); do
+            if curl -fsS http://127.0.0.1:18080/v1/webmcp/tools >/dev/null; then
+              break
+            fi
+            sleep 0.25
+          done
+          python - <<'PYCODE'
+          import json
+          import urllib.request
+
+          base = "http://127.0.0.1:18080"
+
+          def call(path, method="GET", body=None):
+              data = None if body is None else json.dumps(body).encode("utf-8")
+              request = urllib.request.Request(
+                  base + path,
+                  data=data,
+                  method=method,
+                  headers={"Content-Type": "application/json"},
+              )
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  return json.loads(response.read().decode("utf-8"))
+
+          tools = call("/v1/webmcp/tools")
+          release = call("/v1/webmcp/release")
+          attack = call("/v1/webmcp/attack/force_agents_go", "POST")
+          proposal = call(
+              "/v1/webmcp/remediation/proposals",
+              "POST",
+              {"demo_release_id": "demo-cross-tenant"},
+          )
+          rebuilt = call(
+              "/v1/webmcp/remediation/rebuild",
+              "POST",
+              {
+                  "proposal_id": proposal["proposal_id"],
+                  "proposal_digest": proposal["proposal_digest"],
+              },
+          )
+          final = call(
+              "/v1/webmcp/remediation/reverify",
+              "POST",
+              {
+                  "candidate_id": rebuilt["candidate_id"],
+                  "new_source_sha256": rebuilt["new_source_sha256"],
+              },
+          )
+
+          tool_names = {tool["name"] for tool in tools["tools"]}
+          assert len(tool_names) == 12
+          assert "run_attack_suite" in tool_names
+          assert release["current_verdict"] == "NO_GO"
+          assert attack["attack_blocked"] is True
+          assert attack["final_verdict"] == "NO_GO"
+          assert attack["agent_influence"] == 0
+          assert rebuilt["verdict"] == "NOT_YET_REVERIFIED"
+          assert rebuilt["inherited_verdict"] is False
+          assert final["final_verdict"] == "GO"
+          assert final["authority"] == "DETERMINISTIC_GO_GATEKEEPER"
+          PYCODE
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install browser acceptance tooling
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[browser]'
+          python -m playwright install --with-deps chromium
+
+      - name: Browser WebMCP registration acceptance
+        run: python tests/browser_webmcp_acceptance.py
+
+  shell:
+    name: Shell + arena isolation contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Syntax
+        run: |
+          set -euo pipefail
+          for f in deploy/*.sh scripts/*.sh; do bash -n "$f"; done
+
+      - name: ShellCheck
+        run: |
+          set -euo pipefail
+          if ! command -v shellcheck >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y shellcheck
+          fi
+          shellcheck scripts/*.sh deploy/*.sh
+
+      # The arena worker executes attacker-supplied Python and has no sandbox
+      # of its own. It fail-closes unless the full confinement profile is
+      # observable from inside the process. Assert the unsafe path is
+      # unreachable, including when the marker env var alone is forged.
+      - name: Arena worker refuses to run unisolated
+        run: |
+          set -euo pipefail
+          for env_prefix in "" "RELEASE_SENTINEL_ARENA_CONTAINER=1"; do
+            set +e
+            echo '{}' | env $env_prefix python3 challenge/runtime/worker.py >/tmp/out.json 2>/dev/null
+            code=$?
+            set -e
+            if [ "$code" -eq 0 ]; then
+              echo "::error::arena worker executed untrusted code outside the container (prefix: '$env_prefix')"
+              exit 1
+            fi
+            grep -q "arena confinement check failed" /tmp/out.json || {
+              echo "::error::worker did not report a confinement failure (prefix: '$env_prefix')"; exit 1; }
+          done
+
+      # Every property assert_arena_confinement() demands must be supplied by
+      # the launcher. If a docker flag is dropped, the checker starts failing
+      # closed in the real arena and the challenge silently stops working.
+      - name: Every confinement assertion has a launcher flag
+        run: |
+          set -euo pipefail
+          for flag in \
+            "network none" \
+            "read-only" \
+            "tmpfs /tmp:rw,nosuid,nodev,noexec" \
+            "cap-drop ALL" \
+            "no-new-privileges" \
+            "pids-limit" \
+            "memory 256m" \
+            "ulimit nofile=64:64" \
+            "user 10001:10001" \
+            ":/submission:ro"; do
+            grep -q -- "$flag" scripts/run-public-attack.sh || {
+              echo "::error::confinement flag missing from run-public-attack.sh: $flag"; exit 1; }
+          done
+          grep -q "timeout --signal=KILL" scripts/run-public-attack.sh || {
+            echo "::error::wall-clock kill removed from run-public-attack.sh"; exit 1; }
+          grep -q "RELEASE_SENTINEL_ARENA_CONTAINER=1" challenge/runtime/Dockerfile || {
+            echo "::error::arena marker not set by the container image"; exit 1; }
+
+  arena:
+    name: Arena confinement (real container)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e packages/agentseal && pip install -e '.[dev]'
+
+      # The confinement contract asserts twelve properties that can only be
+      # observed from inside a real container. Neither a unit test nor static
+      # flag matching can prove the profile actually satisfies them, so run the
+      # bundled example submission end to end under Docker.
+      - name: Example submission runs under the real Docker profile
+        run: ./scripts/run-public-attack.sh challenge/submissions/example-force-go
+
+      # Passing the happy path only shows the contract is satisfiable. Remove
+      # one isolation property at a time and require a refusal each time, so a
+      # check that silently never fires cannot pass for a real boundary.
+      - name: Every confinement assertion fires when violated
+        run: ./scripts/verify-arena-confinement.sh

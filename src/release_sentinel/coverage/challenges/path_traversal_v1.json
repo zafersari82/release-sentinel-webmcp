@@ -1,0 +1,40 @@
+{
+  "schema": "release-sentinel.coverage-challenge.v1",
+  "id": "path-traversal-containment",
+  "revision": 1,
+  "interface": "can_open_path(base_dir, requested_path, resolved_target) -> bool",
+  "invariant": {
+    "relative_request_only": "REQUIRED",
+    "lexical_containment": "WITHIN_BASE",
+    "resolved_containment": "WITHIN_BASE",
+    "encoded_traversal": "DENY",
+    "symlink_escape": "DENY",
+    "nul_byte": "DENY"
+  },
+  "production_approximation": {
+    "check": "path-containment",
+    "base_dir": "/srv/assets",
+    "requested_path": "../secret.txt",
+    "resolved_target": "/srv/secret.txt",
+    "expected": false
+  },
+  "scope": {
+    "tested": [
+      "path containment",
+      "dot-segment traversal",
+      "selected percent-encoded traversal",
+      "backslash separator traversal",
+      "absolute path rejection",
+      "resolved-target containment",
+      "symlink escape simulation",
+      "prefix collision rejection"
+    ],
+    "not_tested": [
+      "authorization",
+      "filesystem race conditions",
+      "platform-specific Windows drive semantics",
+      "archive extraction",
+      "availability"
+    ]
+  }
+}

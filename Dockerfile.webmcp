@@ -1,0 +1,21 @@
+FROM golang:1.23 AS gatekeeper-build
+WORKDIR /src/gatekeeper
+COPY gatekeeper/go.mod ./go.mod
+COPY gatekeeper/cmd ./cmd
+COPY gatekeeper/internal ./internal
+RUN go build -trimpath -o /out/release-sentinel-gatekeeper ./cmd/gatekeeper
+
+FROM python:3.13-slim
+WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+COPY pyproject.toml README.md LICENSE ./
+COPY src ./src
+COPY deploy/webmcp-entrypoint.sh ./deploy/webmcp-entrypoint.sh
+COPY --from=gatekeeper-build /out/release-sentinel-gatekeeper /usr/local/bin/release-sentinel-gatekeeper
+RUN pip install --no-cache-dir . \
+    && chmod +x /app/deploy/webmcp-entrypoint.sh
+ENV PORT=8080
+EXPOSE 8080
+ENTRYPOINT ["/app/deploy/webmcp-entrypoint.sh"]

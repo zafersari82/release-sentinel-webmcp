@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Release Sentinel — Enterprise Agent Control Plane</title>
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<main class="shell">
+  <header>
+    <div>
+      <span class="eyebrow">FORTIFIED ENTERPRISE FLEET · JUDGE VIEW</span>
+      <h1>Release Sentinel</h1>
+      <p>Enterprise Agent Control Plane · advisory agents inform, deterministic evidence decides.</p>
+    </div>
+    <span id="health" class="chip">checking</span>
+  </header>
+
+  <section class="heroGrid">
+    <article class="fleetCard">
+      <span class="label">AGENT FLEET</span>
+      <div class="fleetTotals"><b id="fleetTotal">5</b><span>registered agents</span></div>
+      <div class="splitMetric"><span>ADVISORY</span><b id="advisoryCount">—</b><span>DETERMINISTIC</span><b id="deterministicCount">—</b></div>
+      <div class="authorityStrip"><span>Verdict authority</span><strong>4 ADVISORY · 1 DETERMINISTIC</strong></div>
+    </article>
+
+    <article class="traceCard">
+      <span class="label">DISTRIBUTED TRACE</span>
+      <div class="traceFlow"><b>Python</b><i>↓</i><b>ADK advisory fleet</b><i>↓</i><b>A2A / W3C</b><i>↓</i><strong>Go Gatekeeper</strong></div>
+      <div class="traceMeta"><span>root: release_verdict_pipeline</span><span id="traceId">trace: runtime</span></div>
+    </article>
+
+    <article class="decisionCard">
+      <span class="label">FINAL DECISION · DETERMINISTIC</span>
+      <div id="finalVerdict" class="decision">—</div>
+      <div class="authorityLine"><span>Agent influence</span><b id="agentInfluence">—</b></div>
+      <div class="authorityLine"><span>Gatekeeper</span><b id="gatekeeper">—</b></div>
+    </article>
+  </section>
+
+  <section class="middleGrid">
+    <article>
+      <span class="label">EVIDENCE</span>
+      <div class="evidenceHero"><div><small>signature</small><b id="signature">—</b></div><div><small>authority</small><b id="evidenceAuthority">—</b></div></div>
+      <div class="metricRow"><b id="findingCount">0</b><span>findings</span><b id="execCount">0</b><span>policy executions</span></div>
+      <div id="findingHeadline" class="findingHeadline">Loading evidence…</div>
+    </article>
+
+    <article class="resilienceCard">
+      <div class="cardHead"><span class="label">RESILIENCE TEST · 6 PREDEFINED</span><button id="runAll" type="button">RUN ALL 6</button></div>
+      <div id="attackGrid" class="attackGrid">
+        <button class="attackBtn" data-attack="force_agents_go"><span>Force 4/4 GO</span><b>NOT RUN</b></button>
+        <button class="attackBtn" data-attack="downgrade_severity"><span>Downgrade severity</span><b>NOT RUN</b></button>
+        <button class="attackBtn" data-attack="delete_blocker"><span>Delete blocker</span><b>NOT RUN</b></button>
+        <button class="attackBtn" data-attack="forge_authority"><span>Forge authority</span><b>NOT RUN</b></button>
+        <button class="attackBtn" data-attack="replay_previous_go"><span>Replay old GO</span><b>NOT RUN</b></button>
+        <button class="attackBtn" data-attack="tamper_evidence_digest"><span>Tamper digest</span><b>NOT RUN</b></button>
+      </div>
+      <div id="attackSummary" class="attackSummary">Safe fixed scenarios only · no arbitrary payload editor</div>
+    </article>
+
+    <article>
+      <span class="label">TRUST BOUNDARY</span>
+      <div class="trustMetric"><b>0</b><span>agent influence on verdict</span></div>
+      <div class="trustRows"><span>Policy + verified evidence</span><b>AUTHORITATIVE</b><span>Registry / telemetry / memory</span><b>NON-AUTHORITATIVE</b><span>A2A production boundary</span><b>PRIVATE IAM / OIDC</b></div>
+    </article>
+  </section>
+
+  <section class="registryCard">
+    <div class="registryHead"><div><span class="label">LIVE AGENT REGISTRY</span><h2>Runtime fleet inventory</h2></div><span id="registryStatus" class="registryStatus">loading</span></div>
+    <div class="tableWrap"><table><thead><tr><th>AGENT</th><th>VERSION</th><th>RUNTIME</th><th>SKILLS</th><th>AUTHORITY</th><th>TRANSPORT</th><th>STATUS</th></tr></thead><tbody id="registryRows"></tbody></table></div>
+  </section>
+
+  <section class="trustbar">
+    <span>Organization policy</span><i>→</i><span>Sandbox evidence</span><i>→</i><span>Signed trust bundle</span><i>→</i><span>Private A2A</span><i>→</i><strong>Go deterministic verdict</strong>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body></html>

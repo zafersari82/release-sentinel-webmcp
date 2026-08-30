@@ -1,0 +1,7 @@
+{
+  "schema": "release-sentinel.public-leaderboard.v1",
+  "verified_attempts": 0,
+  "agent_compromises": 0,
+  "authority_breaks": 0,
+  "breakers": []
+}

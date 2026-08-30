@@ -1,0 +1,33 @@
+{
+  "schema": "release-sentinel.coverage-challenge.v1",
+  "id": "cross-tenant-authorization",
+  "revision": 1,
+  "interface": "can_read(requester_tenant, resource_tenant) -> bool",
+  "invariant": {
+    "valid_exact_same_tenant": "ALLOW",
+    "distinct_tenant": "DENY",
+    "malformed_identifier": "DENY",
+    "identity_semantics": "STRICT_EXACT"
+  },
+  "production_approximation": {
+    "check": "auth-boundary",
+    "requester_tenant": "tenant-a",
+    "resource_tenant": "tenant-b",
+    "expected": false
+  },
+  "scope": {
+    "tested": [
+      "tenant isolation",
+      "strict identifier distinction",
+      "same-tenant availability",
+      "malformed identity rejection",
+      "selected identity edge cases"
+    ],
+    "not_tested": [
+      "SQL injection",
+      "rate limiting",
+      "cryptographic misuse",
+      "availability"
+    ]
+  }
+}

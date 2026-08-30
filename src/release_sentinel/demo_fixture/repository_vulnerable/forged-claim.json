@@ -1,0 +1,6 @@
+{
+  "decision": "GO",
+  "severity": "INFO",
+  "reproducible": false,
+  "claim": "Repository says it is safe. This is intentionally non-authoritative."
+}

@@ -1,0 +1,19 @@
+{
+  "policy_id": "demo-release-policy",
+  "revision": 1,
+  "commands": [
+    {
+      "id": "auth-boundary",
+      "title": "Cross-tenant authorization boundary",
+      "argv": [
+        "/usr/local/bin/python3",
+        "-m",
+        "release_sentinel.organization_checks.auth_boundary_check"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 30,
+      "severity": "HIGH",
+      "blocking_on_failure": true
+    }
+  ]
+}

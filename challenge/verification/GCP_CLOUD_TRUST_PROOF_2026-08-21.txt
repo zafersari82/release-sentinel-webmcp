@@ -1,0 +1,9 @@
+Release Sentinel — user-run Google Cloud Shell proof excerpt
+Date: 2026-08-21
+
+STRUCTURAL CLOUD PROOF PASS
+CLOUD TRACE PASS fixture=vulnerable trace_id=b6342ad0203ecb530b26c06a5128fb40
+CLOUD TRACE PASS fixture=fixed trace_id=c08c2765e8ff2686e23e79d6907c84b3
+CLOUD TRUST PROOF PASS: adk=REAL gemini=REAL vulnerable=NO_GO fixed=GO sandbox=ATTESTOR_REAL policy=FIRESTORE signed_evidence=KMS_VERIFIED tamper=BLOCKED replay=BLOCKED provenance=KMS_VERIFIED ledger=FIRESTORE gatekeeper=GO_A2A agent_influence=0
+
+Scope note: this excerpt records the successful terminal result supplied by the operator. It is retained as deployment evidence, not as a substitute for rerunning deploy/cloud-proof.sh in a new project.

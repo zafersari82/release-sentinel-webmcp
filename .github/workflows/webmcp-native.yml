@@ -1,0 +1,57 @@
+name: webmcp-native
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native-webmcp:
+    name: Native Chrome WebMCP execution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[browser]'
+
+      - name: Build challenge container
+        run: docker build -f Dockerfile.webmcp -t release-sentinel-webmcp:native-ci .
+
+      - name: Start challenge container
+        run: |
+          set -euo pipefail
+          docker run -d --name release-sentinel-webmcp-native -p 18081:8080 release-sentinel-webmcp:native-ci
+          for _ in $(seq 1 120); do
+            if curl -fsS http://127.0.0.1:18081/v1/webmcp/tools >/dev/null; then
+              exit 0
+            fi
+            sleep 0.25
+          done
+          docker logs release-sentinel-webmcp-native
+          exit 1
+
+      - name: Native WebMCP inspect_release call
+        env:
+          RELEASE_SENTINEL_WEBMCP_BASE: http://127.0.0.1:18081
+        run: xvfb-run -a python tests/browser_webmcp_native_acceptance.py
+
+      - name: Container logs
+        if: always()
+        run: docker logs release-sentinel-webmcp-native || true
+
+      - name: Cleanup
+        if: always()
+        run: docker rm -f release-sentinel-webmcp-native >/dev/null 2>&1 || true

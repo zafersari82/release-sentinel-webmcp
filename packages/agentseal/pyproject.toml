@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agentseal"
+version = "0.2.0"
+description = "Differentially test whether an untrusted agent can change what you sign."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+keywords = ["llm", "agents", "attestation", "supply-chain", "provenance", "testing"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Topic :: Security",
+  "Topic :: Software Development :: Testing",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agentseal"]

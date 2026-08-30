@@ -1,0 +1,15 @@
+{
+  "policy_id": "default-release-policy",
+  "revision": 1,
+  "commands": [
+    {
+      "id": "unit-suite",
+      "title": "Organization-required test suite",
+      "argv": ["/usr/bin/python3", "-m", "pytest", "-q", "-p", "no:cacheprovider"],
+      "cwd": ".",
+      "timeout_seconds": 900,
+      "severity": "HIGH",
+      "blocking_on_failure": true
+    }
+  ]
+}

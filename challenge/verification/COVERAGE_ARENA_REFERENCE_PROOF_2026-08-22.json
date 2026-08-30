@@ -1,0 +1,1547 @@
+{
+  "agent_authority": "NONE",
+  "challenges": {
+    "cross-tenant": {
+      "agent_authority": "NONE",
+      "challenge_id": "cross-tenant-authorization",
+      "claim": "SCOPED_GATE_GAP_MEASUREMENT",
+      "interpretation": "This measures intentionally simplified demo policies; Coverage Arena is the measurement instrument, not a claim that any demo policy is production-complete.",
+      "mode": "REFERENCE_OFFLINE",
+      "oracle_qualified": true,
+      "policy_comparison": [
+        {
+          "benchmark_manifest_sha256": "d065f4ea6d8411a0a274b1c73ee632d778cfde39ea21d517b0da7731ecb93cf4",
+          "counts": {
+            "confirmed_safe": 30,
+            "confirmed_unsafe": 30,
+            "correct_accepts": 30,
+            "correct_blocks": 7,
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 23,
+              "observed": 0.7666666666666667,
+              "wilson_95": [
+                0.5907167384187784,
+                0.8820761185551049
+              ]
+            },
+            "escapes": 23,
+            "invalid_candidates": 0,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 0,
+              "observed": 0.0,
+              "wilson_95": [
+                0.0,
+                0.11351339317396876
+              ]
+            },
+            "overblocks": 0,
+            "total_candidates": 60,
+            "unsafe_catch_rate": {
+              "denominator": 30,
+              "numerator": 7,
+              "observed": 0.23333333333333334,
+              "wilson_95": [
+                0.11792388144489496,
+                0.40928326158122164
+              ]
+            },
+            "valid_candidates": 60
+          },
+          "policy_revision": 1,
+          "policy_sha256": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+          "signed_receipt": {
+            "receipt": {
+              "agent_authority": "NONE",
+              "benchmark_lane": "DETERMINISTIC",
+              "claim": "SCOPED_GATE_GAP_MEASUREMENT",
+              "counts": {
+                "confirmed_safe": 30,
+                "confirmed_unsafe": 30,
+                "correct_accepts": 30,
+                "correct_blocks": 7,
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 23,
+                  "observed": 0.7666666666666667,
+                  "wilson_95": [
+                    0.5907167384187784,
+                    0.8820761185551049
+                  ]
+                },
+                "escapes": 23,
+                "invalid_candidates": 0,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 0,
+                  "observed": 0.0,
+                  "wilson_95": [
+                    0.0,
+                    0.11351339317396876
+                  ]
+                },
+                "overblocks": 0,
+                "total_candidates": 60,
+                "unsafe_catch_rate": {
+                  "denominator": 30,
+                  "numerator": 7,
+                  "observed": 0.23333333333333334,
+                  "wilson_95": [
+                    0.11792388144489496,
+                    0.40928326158122164
+                  ]
+                },
+                "valid_candidates": 60
+              },
+              "schema": "release-sentinel.coverage-receipt.v1",
+              "scope": {
+                "benchmark_manifest_sha256": "d065f4ea6d8411a0a274b1c73ee632d778cfde39ea21d517b0da7731ecb93cf4",
+                "challenge_sha256": "c35985161da26f1fd987fd376a1a554476a4875393f0302c13d3b76112e65bc7",
+                "fixture_sha256": "c72179c57c0bd8117418624aa3769fc290c3eab776e6709798f9b27d489f2c3b",
+                "gatekeeper_digest": "2a97638fed181b8b72d4232267b2d36c2ee9b2fa6fbbce3d57e9d165f7213196",
+                "not_tested": [
+                  "SQL injection",
+                  "rate limiting",
+                  "cryptographic misuse",
+                  "availability"
+                ],
+                "oracle_digest": "f407e1dca74508cffdce9260fee634fbf7abb6f47db082b7573e93e5919c4c1e",
+                "oracle_qualification_manifest_sha256": "f9c7c530b5919d8c79adb5d01da80da69673ecd2c0b8c5a07d1927754f2f0419",
+                "oracle_selftest_sha256": "512ba64c718b84718a60fea8783bece166910204673ee2bd7f5bb16547deda54",
+                "policy_sha256": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+                "runner_digest": "81bb8ad668fb2b7e08994e275860d01e270a2ae7c06f58551b2c5aa2d75b21ef",
+                "tested": [
+                  "tenant isolation",
+                  "strict identifier distinction",
+                  "same-tenant availability",
+                  "malformed identity rejection",
+                  "selected identity edge cases"
+                ]
+              }
+            },
+            "signature": {
+              "algorithm": "HMAC_SHA256_TEST_ONLY",
+              "key_id": "reference-receipt-test-key",
+              "payload_sha256": "f4545bb1568ce4b6d62b22fb700a417b562b421431ac0b6f2fe9b434b0576a87",
+              "signature_b64": "eg2unhmSqVgNjusIFbjW5ipjsFoteu5KKEghTYBoYbQ="
+            }
+          }
+        },
+        {
+          "benchmark_manifest_sha256": "d065f4ea6d8411a0a274b1c73ee632d778cfde39ea21d517b0da7731ecb93cf4",
+          "counts": {
+            "confirmed_safe": 30,
+            "confirmed_unsafe": 30,
+            "correct_accepts": 26,
+            "correct_blocks": 27,
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 3,
+              "observed": 0.1,
+              "wilson_95": [
+                0.03459988874733419,
+                0.25621082579184085
+              ]
+            },
+            "escapes": 3,
+            "invalid_candidates": 0,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 4,
+              "observed": 0.13333333333333333,
+              "wilson_95": [
+                0.053096554840547455,
+                0.296813266820363
+              ]
+            },
+            "overblocks": 4,
+            "total_candidates": 60,
+            "unsafe_catch_rate": {
+              "denominator": 30,
+              "numerator": 27,
+              "observed": 0.9,
+              "wilson_95": [
+                0.7437891742081593,
+                0.9654001112526658
+              ]
+            },
+            "valid_candidates": 60
+          },
+          "policy_revision": 2,
+          "policy_sha256": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+          "signed_receipt": {
+            "receipt": {
+              "agent_authority": "NONE",
+              "benchmark_lane": "DETERMINISTIC",
+              "claim": "SCOPED_GATE_GAP_MEASUREMENT",
+              "counts": {
+                "confirmed_safe": 30,
+                "confirmed_unsafe": 30,
+                "correct_accepts": 26,
+                "correct_blocks": 27,
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 3,
+                  "observed": 0.1,
+                  "wilson_95": [
+                    0.03459988874733419,
+                    0.25621082579184085
+                  ]
+                },
+                "escapes": 3,
+                "invalid_candidates": 0,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 4,
+                  "observed": 0.13333333333333333,
+                  "wilson_95": [
+                    0.053096554840547455,
+                    0.296813266820363
+                  ]
+                },
+                "overblocks": 4,
+                "total_candidates": 60,
+                "unsafe_catch_rate": {
+                  "denominator": 30,
+                  "numerator": 27,
+                  "observed": 0.9,
+                  "wilson_95": [
+                    0.7437891742081593,
+                    0.9654001112526658
+                  ]
+                },
+                "valid_candidates": 60
+              },
+              "schema": "release-sentinel.coverage-receipt.v1",
+              "scope": {
+                "benchmark_manifest_sha256": "d065f4ea6d8411a0a274b1c73ee632d778cfde39ea21d517b0da7731ecb93cf4",
+                "challenge_sha256": "c35985161da26f1fd987fd376a1a554476a4875393f0302c13d3b76112e65bc7",
+                "fixture_sha256": "c72179c57c0bd8117418624aa3769fc290c3eab776e6709798f9b27d489f2c3b",
+                "gatekeeper_digest": "c874dd5ddffa342046369ae2db04389eae196e7005672f1f04f34849db97555f",
+                "not_tested": [
+                  "SQL injection",
+                  "rate limiting",
+                  "cryptographic misuse",
+                  "availability"
+                ],
+                "oracle_digest": "f407e1dca74508cffdce9260fee634fbf7abb6f47db082b7573e93e5919c4c1e",
+                "oracle_qualification_manifest_sha256": "f9c7c530b5919d8c79adb5d01da80da69673ecd2c0b8c5a07d1927754f2f0419",
+                "oracle_selftest_sha256": "512ba64c718b84718a60fea8783bece166910204673ee2bd7f5bb16547deda54",
+                "policy_sha256": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+                "runner_digest": "81bb8ad668fb2b7e08994e275860d01e270a2ae7c06f58551b2c5aa2d75b21ef",
+                "tested": [
+                  "tenant isolation",
+                  "strict identifier distinction",
+                  "same-tenant availability",
+                  "malformed identity rejection",
+                  "selected identity edge cases"
+                ]
+              }
+            },
+            "signature": {
+              "algorithm": "HMAC_SHA256_TEST_ONLY",
+              "key_id": "reference-receipt-test-key",
+              "payload_sha256": "4feceadad86944823553fc59ac2760098d46a8ae776aca485f24c39076778be0",
+              "signature_b64": "VbFgmKuoHtym9jl5EypHp53Twx5UP6azHqipXsAyimY="
+            }
+          }
+        },
+        {
+          "benchmark_manifest_sha256": "d065f4ea6d8411a0a274b1c73ee632d778cfde39ea21d517b0da7731ecb93cf4",
+          "counts": {
+            "confirmed_safe": 30,
+            "confirmed_unsafe": 30,
+            "correct_accepts": 9,
+            "correct_blocks": 30,
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 0,
+              "observed": 0.0,
+              "wilson_95": [
+                0.0,
+                0.11351339317396876
+              ]
+            },
+            "escapes": 0,
+            "invalid_candidates": 0,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 21,
+              "observed": 0.7,
+              "wilson_95": [
+                0.5212421254128504,
+                0.8333525173175619
+              ]
+            },
+            "overblocks": 21,
+            "total_candidates": 60,
+            "unsafe_catch_rate": {
+              "denominator": 30,
+              "numerator": 30,
+              "observed": 1.0,
+              "wilson_95": [
+                0.8864866068260312,
+                0.9999999999999999
+              ]
+            },
+            "valid_candidates": 60
+          },
+          "policy_revision": 3,
+          "policy_sha256": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+          "signed_receipt": {
+            "receipt": {
+              "agent_authority": "NONE",
+              "benchmark_lane": "DETERMINISTIC",
+              "claim": "SCOPED_GATE_GAP_MEASUREMENT",
+              "counts": {
+                "confirmed_safe": 30,
+                "confirmed_unsafe": 30,
+                "correct_accepts": 9,
+                "correct_blocks": 30,
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 0,
+                  "observed": 0.0,
+                  "wilson_95": [
+                    0.0,
+                    0.11351339317396876
+                  ]
+                },
+                "escapes": 0,
+                "invalid_candidates": 0,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 21,
+                  "observed": 0.7,
+                  "wilson_95": [
+                    0.5212421254128504,
+                    0.8333525173175619
+                  ]
+                },
+                "overblocks": 21,
+                "total_candidates": 60,
+                "unsafe_catch_rate": {
+                  "denominator": 30,
+                  "numerator": 30,
+                  "observed": 1.0,
+                  "wilson_95": [
+                    0.8864866068260312,
+                    0.9999999999999999
+                  ]
+                },
+                "valid_candidates": 60
+              },
+              "schema": "release-sentinel.coverage-receipt.v1",
+              "scope": {
+                "benchmark_manifest_sha256": "d065f4ea6d8411a0a274b1c73ee632d778cfde39ea21d517b0da7731ecb93cf4",
+                "challenge_sha256": "c35985161da26f1fd987fd376a1a554476a4875393f0302c13d3b76112e65bc7",
+                "fixture_sha256": "c72179c57c0bd8117418624aa3769fc290c3eab776e6709798f9b27d489f2c3b",
+                "gatekeeper_digest": "e57580f9af980008e75a7f3b76936b6188079439ada5c4965067dd9d4c2b83d6",
+                "not_tested": [
+                  "SQL injection",
+                  "rate limiting",
+                  "cryptographic misuse",
+                  "availability"
+                ],
+                "oracle_digest": "f407e1dca74508cffdce9260fee634fbf7abb6f47db082b7573e93e5919c4c1e",
+                "oracle_qualification_manifest_sha256": "f9c7c530b5919d8c79adb5d01da80da69673ecd2c0b8c5a07d1927754f2f0419",
+                "oracle_selftest_sha256": "512ba64c718b84718a60fea8783bece166910204673ee2bd7f5bb16547deda54",
+                "policy_sha256": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+                "runner_digest": "81bb8ad668fb2b7e08994e275860d01e270a2ae7c06f58551b2c5aa2d75b21ef",
+                "tested": [
+                  "tenant isolation",
+                  "strict identifier distinction",
+                  "same-tenant availability",
+                  "malformed identity rejection",
+                  "selected identity edge cases"
+                ]
+              }
+            },
+            "signature": {
+              "algorithm": "HMAC_SHA256_TEST_ONLY",
+              "key_id": "reference-receipt-test-key",
+              "payload_sha256": "474ee305a11ba4fc77b2277eb5ff67b4b746fd778e203cc3410f91cad9c1b403",
+              "signature_b64": "KNdEH5R4j7Gc0APoAPgvD00n/PXsD90Voy2+FiyK6rA="
+            }
+          }
+        }
+      ],
+      "production_release_authority": "UNCHANGED",
+      "tradeoff": {
+        "benchmark_manifest_sha256": "d065f4ea6d8411a0a274b1c73ee632d778cfde39ea21d517b0da7731ecb93cf4",
+        "comparison_scope_sha256": "9c992a6b2d5ceb160551178108237585074193fa0ebb9bb343f56b49bff32884",
+        "mcnemar": {
+          "alpha": 0.05,
+          "comparisons": [
+            {
+              "adjusted_alpha": 0.0125,
+              "discordant_pairs": 20,
+              "exact_p_value": 1.9073486328125e-06,
+              "holm_rank": 3,
+              "metric": "escape",
+              "only_from": 20,
+              "only_to": 0,
+              "policy_revision_from": 1,
+              "policy_revision_to": 2,
+              "policy_sha256_from": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+              "policy_sha256_to": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+              "raw_p_value": 1.9073486328125e-06,
+              "reject_null_after_correction": true,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.05,
+              "discordant_pairs": 3,
+              "exact_p_value": 0.25,
+              "holm_rank": 6,
+              "metric": "escape",
+              "only_from": 3,
+              "only_to": 0,
+              "policy_revision_from": 2,
+              "policy_revision_to": 3,
+              "policy_sha256_from": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+              "policy_sha256_to": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+              "raw_p_value": 0.25,
+              "reject_null_after_correction": false,
+              "reject_null_at_alpha": false,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.008333333333333333,
+              "discordant_pairs": 23,
+              "exact_p_value": 2.384185791015625e-07,
+              "holm_rank": 1,
+              "metric": "escape",
+              "only_from": 23,
+              "only_to": 0,
+              "policy_revision_from": 1,
+              "policy_revision_to": 3,
+              "policy_sha256_from": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+              "policy_sha256_to": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+              "raw_p_value": 2.384185791015625e-07,
+              "reject_null_after_correction": true,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.025,
+              "discordant_pairs": 4,
+              "exact_p_value": 0.125,
+              "holm_rank": 5,
+              "metric": "overblock",
+              "only_from": 0,
+              "only_to": 4,
+              "policy_revision_from": 1,
+              "policy_revision_to": 2,
+              "policy_sha256_from": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+              "policy_sha256_to": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+              "raw_p_value": 0.125,
+              "reject_null_after_correction": false,
+              "reject_null_at_alpha": false,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.016666666666666666,
+              "discordant_pairs": 17,
+              "exact_p_value": 1.52587890625e-05,
+              "holm_rank": 4,
+              "metric": "overblock",
+              "only_from": 0,
+              "only_to": 17,
+              "policy_revision_from": 2,
+              "policy_revision_to": 3,
+              "policy_sha256_from": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+              "policy_sha256_to": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+              "raw_p_value": 1.52587890625e-05,
+              "reject_null_after_correction": true,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.01,
+              "discordant_pairs": 21,
+              "exact_p_value": 9.5367431640625e-07,
+              "holm_rank": 2,
+              "metric": "overblock",
+              "only_from": 0,
+              "only_to": 21,
+              "policy_revision_from": 1,
+              "policy_revision_to": 3,
+              "policy_sha256_from": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+              "policy_sha256_to": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+              "raw_p_value": 9.5367431640625e-07,
+              "reject_null_after_correction": true,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            }
+          ],
+          "family_size": 6,
+          "family_wise_correction": "HOLM_BONFERRONI",
+          "inference_scope": "FIXED_HASH_BOUND_BENCHMARK_ONLY",
+          "interpretation": "Exact paired comparisons over this fixed hash-bound benchmark corpus; p-values are scoped diagnostics, not population-wide security significance.",
+          "method": "EXACT_TWO_SIDED_BINOMIAL_P_0_5",
+          "null_hypothesis": "DISCORDANT_DIRECTION_PROBABILITY_EQUALS_0_5",
+          "paired_by": "candidate_id"
+        },
+        "points": [
+          {
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 23,
+              "observed": 0.7666666666666667,
+              "wilson_95": [
+                0.5907167384187784,
+                0.8820761185551049
+              ]
+            },
+            "escapes": 23,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 0,
+              "observed": 0.0,
+              "wilson_95": [
+                0.0,
+                0.11351339317396876
+              ]
+            },
+            "overblocks": 0,
+            "policy_revision": 1,
+            "policy_sha256": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda"
+          },
+          {
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 3,
+              "observed": 0.1,
+              "wilson_95": [
+                0.03459988874733419,
+                0.25621082579184085
+              ]
+            },
+            "escapes": 3,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 4,
+              "observed": 0.13333333333333333,
+              "wilson_95": [
+                0.053096554840547455,
+                0.296813266820363
+              ]
+            },
+            "overblocks": 4,
+            "policy_revision": 2,
+            "policy_sha256": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5"
+          },
+          {
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 0,
+              "observed": 0.0,
+              "wilson_95": [
+                0.0,
+                0.11351339317396876
+              ]
+            },
+            "escapes": 0,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 21,
+              "observed": 0.7,
+              "wilson_95": [
+                0.5212421254128504,
+                0.8333525173175619
+              ]
+            },
+            "overblocks": 21,
+            "policy_revision": 3,
+            "policy_sha256": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40"
+          }
+        ],
+        "signed_comparison_receipt": {
+          "receipt": {
+            "agent_authority": "NONE",
+            "benchmark_manifest_sha256": "d065f4ea6d8411a0a274b1c73ee632d778cfde39ea21d517b0da7731ecb93cf4",
+            "claim": "SCOPED_PAIRED_POLICY_TRADEOFF",
+            "comparison_scope_sha256": "9c992a6b2d5ceb160551178108237585074193fa0ebb9bb343f56b49bff32884",
+            "mcnemar": {
+              "alpha": 0.05,
+              "comparisons": [
+                {
+                  "adjusted_alpha": 0.0125,
+                  "discordant_pairs": 20,
+                  "exact_p_value": 1.9073486328125e-06,
+                  "holm_rank": 3,
+                  "metric": "escape",
+                  "only_from": 20,
+                  "only_to": 0,
+                  "policy_revision_from": 1,
+                  "policy_revision_to": 2,
+                  "policy_sha256_from": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+                  "policy_sha256_to": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+                  "raw_p_value": 1.9073486328125e-06,
+                  "reject_null_after_correction": true,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.05,
+                  "discordant_pairs": 3,
+                  "exact_p_value": 0.25,
+                  "holm_rank": 6,
+                  "metric": "escape",
+                  "only_from": 3,
+                  "only_to": 0,
+                  "policy_revision_from": 2,
+                  "policy_revision_to": 3,
+                  "policy_sha256_from": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+                  "policy_sha256_to": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+                  "raw_p_value": 0.25,
+                  "reject_null_after_correction": false,
+                  "reject_null_at_alpha": false,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.008333333333333333,
+                  "discordant_pairs": 23,
+                  "exact_p_value": 2.384185791015625e-07,
+                  "holm_rank": 1,
+                  "metric": "escape",
+                  "only_from": 23,
+                  "only_to": 0,
+                  "policy_revision_from": 1,
+                  "policy_revision_to": 3,
+                  "policy_sha256_from": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+                  "policy_sha256_to": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+                  "raw_p_value": 2.384185791015625e-07,
+                  "reject_null_after_correction": true,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.025,
+                  "discordant_pairs": 4,
+                  "exact_p_value": 0.125,
+                  "holm_rank": 5,
+                  "metric": "overblock",
+                  "only_from": 0,
+                  "only_to": 4,
+                  "policy_revision_from": 1,
+                  "policy_revision_to": 2,
+                  "policy_sha256_from": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+                  "policy_sha256_to": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+                  "raw_p_value": 0.125,
+                  "reject_null_after_correction": false,
+                  "reject_null_at_alpha": false,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.016666666666666666,
+                  "discordant_pairs": 17,
+                  "exact_p_value": 1.52587890625e-05,
+                  "holm_rank": 4,
+                  "metric": "overblock",
+                  "only_from": 0,
+                  "only_to": 17,
+                  "policy_revision_from": 2,
+                  "policy_revision_to": 3,
+                  "policy_sha256_from": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5",
+                  "policy_sha256_to": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+                  "raw_p_value": 1.52587890625e-05,
+                  "reject_null_after_correction": true,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.01,
+                  "discordant_pairs": 21,
+                  "exact_p_value": 9.5367431640625e-07,
+                  "holm_rank": 2,
+                  "metric": "overblock",
+                  "only_from": 0,
+                  "only_to": 21,
+                  "policy_revision_from": 1,
+                  "policy_revision_to": 3,
+                  "policy_sha256_from": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda",
+                  "policy_sha256_to": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40",
+                  "raw_p_value": 9.5367431640625e-07,
+                  "reject_null_after_correction": true,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                }
+              ],
+              "family_size": 6,
+              "family_wise_correction": "HOLM_BONFERRONI",
+              "inference_scope": "FIXED_HASH_BOUND_BENCHMARK_ONLY",
+              "interpretation": "Exact paired comparisons over this fixed hash-bound benchmark corpus; p-values are scoped diagnostics, not population-wide security significance.",
+              "method": "EXACT_TWO_SIDED_BINOMIAL_P_0_5",
+              "null_hypothesis": "DISCORDANT_DIRECTION_PROBABILITY_EQUALS_0_5",
+              "paired_by": "candidate_id"
+            },
+            "points": [
+              {
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 23,
+                  "observed": 0.7666666666666667,
+                  "wilson_95": [
+                    0.5907167384187784,
+                    0.8820761185551049
+                  ]
+                },
+                "escapes": 23,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 0,
+                  "observed": 0.0,
+                  "wilson_95": [
+                    0.0,
+                    0.11351339317396876
+                  ]
+                },
+                "overblocks": 0,
+                "policy_revision": 1,
+                "policy_sha256": "9ff259b34fcf35d7b1f089c3750c2f01474b200c51cd6f3c455f78408e370eda"
+              },
+              {
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 3,
+                  "observed": 0.1,
+                  "wilson_95": [
+                    0.03459988874733419,
+                    0.25621082579184085
+                  ]
+                },
+                "escapes": 3,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 4,
+                  "observed": 0.13333333333333333,
+                  "wilson_95": [
+                    0.053096554840547455,
+                    0.296813266820363
+                  ]
+                },
+                "overblocks": 4,
+                "policy_revision": 2,
+                "policy_sha256": "5300228ed88719400ea5819459ba0dec224f436a5bf3bb449ea12853c328eda5"
+              },
+              {
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 0,
+                  "observed": 0.0,
+                  "wilson_95": [
+                    0.0,
+                    0.11351339317396876
+                  ]
+                },
+                "escapes": 0,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 21,
+                  "observed": 0.7,
+                  "wilson_95": [
+                    0.5212421254128504,
+                    0.8333525173175619
+                  ]
+                },
+                "overblocks": 21,
+                "policy_revision": 3,
+                "policy_sha256": "fd367b143450a343d005588b615a3ad9d30bffdfab18627243f72924d63cac40"
+              }
+            ],
+            "schema": "release-sentinel.coverage-comparison-receipt.v1"
+          },
+          "signature": {
+            "algorithm": "HMAC_SHA256_TEST_ONLY",
+            "key_id": "reference-comparison-test-key",
+            "payload_sha256": "a512a43715418fd8061544ef6f9d2bb2c77321608d8a2c84946f0dc236e28e36",
+            "signature_b64": "G5ramiQOegv2qYJhrUpuXPPoLA1q+xolCtZVUehrA0A="
+          }
+        }
+      }
+    },
+    "path-traversal": {
+      "agent_authority": "NONE",
+      "challenge_id": "path-traversal-containment",
+      "claim": "SCOPED_GATE_GAP_MEASUREMENT",
+      "interpretation": "This measures intentionally simplified demo policies; Coverage Arena is the measurement instrument, not a claim that any demo policy is production-complete.",
+      "mode": "REFERENCE_OFFLINE",
+      "oracle_qualified": true,
+      "policy_comparison": [
+        {
+          "benchmark_manifest_sha256": "cdcb780afac3aa5f9b8283d52a3f02cf7e50d3cb170225630abc3673d2021e67",
+          "counts": {
+            "confirmed_safe": 30,
+            "confirmed_unsafe": 30,
+            "correct_accepts": 30,
+            "correct_blocks": 3,
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 27,
+              "observed": 0.9,
+              "wilson_95": [
+                0.7437891742081593,
+                0.9654001112526658
+              ]
+            },
+            "escapes": 27,
+            "invalid_candidates": 0,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 0,
+              "observed": 0.0,
+              "wilson_95": [
+                0.0,
+                0.11351339317396876
+              ]
+            },
+            "overblocks": 0,
+            "total_candidates": 60,
+            "unsafe_catch_rate": {
+              "denominator": 30,
+              "numerator": 3,
+              "observed": 0.1,
+              "wilson_95": [
+                0.03459988874733419,
+                0.25621082579184085
+              ]
+            },
+            "valid_candidates": 60
+          },
+          "policy_revision": 1,
+          "policy_sha256": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+          "signed_receipt": {
+            "receipt": {
+              "agent_authority": "NONE",
+              "benchmark_lane": "DETERMINISTIC",
+              "claim": "SCOPED_GATE_GAP_MEASUREMENT",
+              "counts": {
+                "confirmed_safe": 30,
+                "confirmed_unsafe": 30,
+                "correct_accepts": 30,
+                "correct_blocks": 3,
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 27,
+                  "observed": 0.9,
+                  "wilson_95": [
+                    0.7437891742081593,
+                    0.9654001112526658
+                  ]
+                },
+                "escapes": 27,
+                "invalid_candidates": 0,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 0,
+                  "observed": 0.0,
+                  "wilson_95": [
+                    0.0,
+                    0.11351339317396876
+                  ]
+                },
+                "overblocks": 0,
+                "total_candidates": 60,
+                "unsafe_catch_rate": {
+                  "denominator": 30,
+                  "numerator": 3,
+                  "observed": 0.1,
+                  "wilson_95": [
+                    0.03459988874733419,
+                    0.25621082579184085
+                  ]
+                },
+                "valid_candidates": 60
+              },
+              "schema": "release-sentinel.coverage-receipt.v1",
+              "scope": {
+                "benchmark_manifest_sha256": "cdcb780afac3aa5f9b8283d52a3f02cf7e50d3cb170225630abc3673d2021e67",
+                "challenge_sha256": "9283723c083d9ba279edb1f131542115c0fe0a95e64738caa1042183215b26d8",
+                "fixture_sha256": "5addcef7fca9496e8dbc46c343bb3f26f02083b267d96649a8fc390b979e41b0",
+                "gatekeeper_digest": "8acb82bccc9ad077ff6cf16fef9b9a1d0d398ddf6222e0fc79264d4aa48448f1",
+                "not_tested": [
+                  "authorization",
+                  "filesystem race conditions",
+                  "platform-specific Windows drive semantics",
+                  "archive extraction",
+                  "availability"
+                ],
+                "oracle_digest": "c93df2454be7675b8a3238f4712d0428686f5772ea4785e880b54bf3ee8141a1",
+                "oracle_qualification_manifest_sha256": "d8cb340d1b6760458cea6f42399bb056425b4a2691c8bd36c17d806494871706",
+                "oracle_selftest_sha256": "9584cfbe4382ba1eea792d54c6c53f9c8532d4101c2305af5fb04f1bc916fcd4",
+                "policy_sha256": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+                "runner_digest": "81bb8ad668fb2b7e08994e275860d01e270a2ae7c06f58551b2c5aa2d75b21ef",
+                "tested": [
+                  "path containment",
+                  "dot-segment traversal",
+                  "selected percent-encoded traversal",
+                  "backslash separator traversal",
+                  "absolute path rejection",
+                  "resolved-target containment",
+                  "symlink escape simulation",
+                  "prefix collision rejection"
+                ]
+              }
+            },
+            "signature": {
+              "algorithm": "HMAC_SHA256_TEST_ONLY",
+              "key_id": "reference-receipt-test-key",
+              "payload_sha256": "e38d5edf27b7401cb1e23836e836083520662168d3bafe8d8141d3c136a90b3c",
+              "signature_b64": "ibhZEyguASaKd48EZtkyAXB43lfpJ5lqm3nquw5SHNA="
+            }
+          }
+        },
+        {
+          "benchmark_manifest_sha256": "cdcb780afac3aa5f9b8283d52a3f02cf7e50d3cb170225630abc3673d2021e67",
+          "counts": {
+            "confirmed_safe": 30,
+            "confirmed_unsafe": 30,
+            "correct_accepts": 26,
+            "correct_blocks": 24,
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 6,
+              "observed": 0.2,
+              "wilson_95": [
+                0.0950510717728987,
+                0.3730569641314825
+              ]
+            },
+            "escapes": 6,
+            "invalid_candidates": 0,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 4,
+              "observed": 0.13333333333333333,
+              "wilson_95": [
+                0.053096554840547455,
+                0.296813266820363
+              ]
+            },
+            "overblocks": 4,
+            "total_candidates": 60,
+            "unsafe_catch_rate": {
+              "denominator": 30,
+              "numerator": 24,
+              "observed": 0.8,
+              "wilson_95": [
+                0.6269430358685175,
+                0.9049489282271013
+              ]
+            },
+            "valid_candidates": 60
+          },
+          "policy_revision": 2,
+          "policy_sha256": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+          "signed_receipt": {
+            "receipt": {
+              "agent_authority": "NONE",
+              "benchmark_lane": "DETERMINISTIC",
+              "claim": "SCOPED_GATE_GAP_MEASUREMENT",
+              "counts": {
+                "confirmed_safe": 30,
+                "confirmed_unsafe": 30,
+                "correct_accepts": 26,
+                "correct_blocks": 24,
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 6,
+                  "observed": 0.2,
+                  "wilson_95": [
+                    0.0950510717728987,
+                    0.3730569641314825
+                  ]
+                },
+                "escapes": 6,
+                "invalid_candidates": 0,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 4,
+                  "observed": 0.13333333333333333,
+                  "wilson_95": [
+                    0.053096554840547455,
+                    0.296813266820363
+                  ]
+                },
+                "overblocks": 4,
+                "total_candidates": 60,
+                "unsafe_catch_rate": {
+                  "denominator": 30,
+                  "numerator": 24,
+                  "observed": 0.8,
+                  "wilson_95": [
+                    0.6269430358685175,
+                    0.9049489282271013
+                  ]
+                },
+                "valid_candidates": 60
+              },
+              "schema": "release-sentinel.coverage-receipt.v1",
+              "scope": {
+                "benchmark_manifest_sha256": "cdcb780afac3aa5f9b8283d52a3f02cf7e50d3cb170225630abc3673d2021e67",
+                "challenge_sha256": "9283723c083d9ba279edb1f131542115c0fe0a95e64738caa1042183215b26d8",
+                "fixture_sha256": "5addcef7fca9496e8dbc46c343bb3f26f02083b267d96649a8fc390b979e41b0",
+                "gatekeeper_digest": "abaa0cabf9bf9cfd1bbe38cb7630d9e0960deafe0ebde081ced8b384580854b9",
+                "not_tested": [
+                  "authorization",
+                  "filesystem race conditions",
+                  "platform-specific Windows drive semantics",
+                  "archive extraction",
+                  "availability"
+                ],
+                "oracle_digest": "c93df2454be7675b8a3238f4712d0428686f5772ea4785e880b54bf3ee8141a1",
+                "oracle_qualification_manifest_sha256": "d8cb340d1b6760458cea6f42399bb056425b4a2691c8bd36c17d806494871706",
+                "oracle_selftest_sha256": "9584cfbe4382ba1eea792d54c6c53f9c8532d4101c2305af5fb04f1bc916fcd4",
+                "policy_sha256": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+                "runner_digest": "81bb8ad668fb2b7e08994e275860d01e270a2ae7c06f58551b2c5aa2d75b21ef",
+                "tested": [
+                  "path containment",
+                  "dot-segment traversal",
+                  "selected percent-encoded traversal",
+                  "backslash separator traversal",
+                  "absolute path rejection",
+                  "resolved-target containment",
+                  "symlink escape simulation",
+                  "prefix collision rejection"
+                ]
+              }
+            },
+            "signature": {
+              "algorithm": "HMAC_SHA256_TEST_ONLY",
+              "key_id": "reference-receipt-test-key",
+              "payload_sha256": "f99fb6aacb49a2f9b127999afef3b16af30bcbf916f3c58712cbe50a92cc50e0",
+              "signature_b64": "LHz7Jw40h5RMsp08E/dWQ95uTZtwobjEIAZCELPgUdo="
+            }
+          }
+        },
+        {
+          "benchmark_manifest_sha256": "cdcb780afac3aa5f9b8283d52a3f02cf7e50d3cb170225630abc3673d2021e67",
+          "counts": {
+            "confirmed_safe": 30,
+            "confirmed_unsafe": 30,
+            "correct_accepts": 16,
+            "correct_blocks": 30,
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 0,
+              "observed": 0.0,
+              "wilson_95": [
+                0.0,
+                0.11351339317396876
+              ]
+            },
+            "escapes": 0,
+            "invalid_candidates": 0,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 14,
+              "observed": 0.4666666666666667,
+              "wilson_95": [
+                0.30232388907699753,
+                0.638577003801267
+              ]
+            },
+            "overblocks": 14,
+            "total_candidates": 60,
+            "unsafe_catch_rate": {
+              "denominator": 30,
+              "numerator": 30,
+              "observed": 1.0,
+              "wilson_95": [
+                0.8864866068260312,
+                0.9999999999999999
+              ]
+            },
+            "valid_candidates": 60
+          },
+          "policy_revision": 3,
+          "policy_sha256": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+          "signed_receipt": {
+            "receipt": {
+              "agent_authority": "NONE",
+              "benchmark_lane": "DETERMINISTIC",
+              "claim": "SCOPED_GATE_GAP_MEASUREMENT",
+              "counts": {
+                "confirmed_safe": 30,
+                "confirmed_unsafe": 30,
+                "correct_accepts": 16,
+                "correct_blocks": 30,
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 0,
+                  "observed": 0.0,
+                  "wilson_95": [
+                    0.0,
+                    0.11351339317396876
+                  ]
+                },
+                "escapes": 0,
+                "invalid_candidates": 0,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 14,
+                  "observed": 0.4666666666666667,
+                  "wilson_95": [
+                    0.30232388907699753,
+                    0.638577003801267
+                  ]
+                },
+                "overblocks": 14,
+                "total_candidates": 60,
+                "unsafe_catch_rate": {
+                  "denominator": 30,
+                  "numerator": 30,
+                  "observed": 1.0,
+                  "wilson_95": [
+                    0.8864866068260312,
+                    0.9999999999999999
+                  ]
+                },
+                "valid_candidates": 60
+              },
+              "schema": "release-sentinel.coverage-receipt.v1",
+              "scope": {
+                "benchmark_manifest_sha256": "cdcb780afac3aa5f9b8283d52a3f02cf7e50d3cb170225630abc3673d2021e67",
+                "challenge_sha256": "9283723c083d9ba279edb1f131542115c0fe0a95e64738caa1042183215b26d8",
+                "fixture_sha256": "5addcef7fca9496e8dbc46c343bb3f26f02083b267d96649a8fc390b979e41b0",
+                "gatekeeper_digest": "9b33a53f7220d8f476c5e0927ee875dafb1264a8127c18673386d040036dc649",
+                "not_tested": [
+                  "authorization",
+                  "filesystem race conditions",
+                  "platform-specific Windows drive semantics",
+                  "archive extraction",
+                  "availability"
+                ],
+                "oracle_digest": "c93df2454be7675b8a3238f4712d0428686f5772ea4785e880b54bf3ee8141a1",
+                "oracle_qualification_manifest_sha256": "d8cb340d1b6760458cea6f42399bb056425b4a2691c8bd36c17d806494871706",
+                "oracle_selftest_sha256": "9584cfbe4382ba1eea792d54c6c53f9c8532d4101c2305af5fb04f1bc916fcd4",
+                "policy_sha256": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+                "runner_digest": "81bb8ad668fb2b7e08994e275860d01e270a2ae7c06f58551b2c5aa2d75b21ef",
+                "tested": [
+                  "path containment",
+                  "dot-segment traversal",
+                  "selected percent-encoded traversal",
+                  "backslash separator traversal",
+                  "absolute path rejection",
+                  "resolved-target containment",
+                  "symlink escape simulation",
+                  "prefix collision rejection"
+                ]
+              }
+            },
+            "signature": {
+              "algorithm": "HMAC_SHA256_TEST_ONLY",
+              "key_id": "reference-receipt-test-key",
+              "payload_sha256": "0c3ca1f8b8e95f4a589ba5ed0da97124854c46401eb86da0c3ca56c8f1873f25",
+              "signature_b64": "DfgFOvnU4RP1jxnWgEp7nN53EBszmeF/zOtqvBSqlEo="
+            }
+          }
+        }
+      ],
+      "production_release_authority": "UNCHANGED",
+      "tradeoff": {
+        "benchmark_manifest_sha256": "cdcb780afac3aa5f9b8283d52a3f02cf7e50d3cb170225630abc3673d2021e67",
+        "comparison_scope_sha256": "6c8491a998730448faf56b7b2c4fce011fe9c38c2b9f9b97da765cdb18dabc4f",
+        "mcnemar": {
+          "alpha": 0.05,
+          "comparisons": [
+            {
+              "adjusted_alpha": 0.01,
+              "discordant_pairs": 21,
+              "exact_p_value": 9.5367431640625e-07,
+              "holm_rank": 2,
+              "metric": "escape",
+              "only_from": 21,
+              "only_to": 0,
+              "policy_revision_from": 1,
+              "policy_revision_to": 2,
+              "policy_sha256_from": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+              "policy_sha256_to": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+              "raw_p_value": 9.5367431640625e-07,
+              "reject_null_after_correction": true,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.025,
+              "discordant_pairs": 6,
+              "exact_p_value": 0.03125,
+              "holm_rank": 5,
+              "metric": "escape",
+              "only_from": 6,
+              "only_to": 0,
+              "policy_revision_from": 2,
+              "policy_revision_to": 3,
+              "policy_sha256_from": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+              "policy_sha256_to": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+              "raw_p_value": 0.03125,
+              "reject_null_after_correction": false,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.008333333333333333,
+              "discordant_pairs": 27,
+              "exact_p_value": 1.4901161193847656e-08,
+              "holm_rank": 1,
+              "metric": "escape",
+              "only_from": 27,
+              "only_to": 0,
+              "policy_revision_from": 1,
+              "policy_revision_to": 3,
+              "policy_sha256_from": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+              "policy_sha256_to": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+              "raw_p_value": 1.4901161193847656e-08,
+              "reject_null_after_correction": true,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.05,
+              "discordant_pairs": 4,
+              "exact_p_value": 0.125,
+              "holm_rank": 6,
+              "metric": "overblock",
+              "only_from": 0,
+              "only_to": 4,
+              "policy_revision_from": 1,
+              "policy_revision_to": 2,
+              "policy_sha256_from": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+              "policy_sha256_to": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+              "raw_p_value": 0.125,
+              "reject_null_after_correction": false,
+              "reject_null_at_alpha": false,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.016666666666666666,
+              "discordant_pairs": 10,
+              "exact_p_value": 0.001953125,
+              "holm_rank": 4,
+              "metric": "overblock",
+              "only_from": 0,
+              "only_to": 10,
+              "policy_revision_from": 2,
+              "policy_revision_to": 3,
+              "policy_sha256_from": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+              "policy_sha256_to": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+              "raw_p_value": 0.001953125,
+              "reject_null_after_correction": true,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            },
+            {
+              "adjusted_alpha": 0.0125,
+              "discordant_pairs": 14,
+              "exact_p_value": 0.0001220703125,
+              "holm_rank": 3,
+              "metric": "overblock",
+              "only_from": 0,
+              "only_to": 14,
+              "policy_revision_from": 1,
+              "policy_revision_to": 3,
+              "policy_sha256_from": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+              "policy_sha256_to": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+              "raw_p_value": 0.0001220703125,
+              "reject_null_after_correction": true,
+              "reject_null_at_alpha": true,
+              "total_pairs": 30
+            }
+          ],
+          "family_size": 6,
+          "family_wise_correction": "HOLM_BONFERRONI",
+          "inference_scope": "FIXED_HASH_BOUND_BENCHMARK_ONLY",
+          "interpretation": "Exact paired comparisons over this fixed hash-bound benchmark corpus; p-values are scoped diagnostics, not population-wide security significance.",
+          "method": "EXACT_TWO_SIDED_BINOMIAL_P_0_5",
+          "null_hypothesis": "DISCORDANT_DIRECTION_PROBABILITY_EQUALS_0_5",
+          "paired_by": "candidate_id"
+        },
+        "points": [
+          {
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 27,
+              "observed": 0.9,
+              "wilson_95": [
+                0.7437891742081593,
+                0.9654001112526658
+              ]
+            },
+            "escapes": 27,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 0,
+              "observed": 0.0,
+              "wilson_95": [
+                0.0,
+                0.11351339317396876
+              ]
+            },
+            "overblocks": 0,
+            "policy_revision": 1,
+            "policy_sha256": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab"
+          },
+          {
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 6,
+              "observed": 0.2,
+              "wilson_95": [
+                0.0950510717728987,
+                0.3730569641314825
+              ]
+            },
+            "escapes": 6,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 4,
+              "observed": 0.13333333333333333,
+              "wilson_95": [
+                0.053096554840547455,
+                0.296813266820363
+              ]
+            },
+            "overblocks": 4,
+            "policy_revision": 2,
+            "policy_sha256": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025"
+          },
+          {
+            "escape_rate": {
+              "denominator": 30,
+              "numerator": 0,
+              "observed": 0.0,
+              "wilson_95": [
+                0.0,
+                0.11351339317396876
+              ]
+            },
+            "escapes": 0,
+            "overblock_rate": {
+              "denominator": 30,
+              "numerator": 14,
+              "observed": 0.4666666666666667,
+              "wilson_95": [
+                0.30232388907699753,
+                0.638577003801267
+              ]
+            },
+            "overblocks": 14,
+            "policy_revision": 3,
+            "policy_sha256": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20"
+          }
+        ],
+        "signed_comparison_receipt": {
+          "receipt": {
+            "agent_authority": "NONE",
+            "benchmark_manifest_sha256": "cdcb780afac3aa5f9b8283d52a3f02cf7e50d3cb170225630abc3673d2021e67",
+            "claim": "SCOPED_PAIRED_POLICY_TRADEOFF",
+            "comparison_scope_sha256": "6c8491a998730448faf56b7b2c4fce011fe9c38c2b9f9b97da765cdb18dabc4f",
+            "mcnemar": {
+              "alpha": 0.05,
+              "comparisons": [
+                {
+                  "adjusted_alpha": 0.01,
+                  "discordant_pairs": 21,
+                  "exact_p_value": 9.5367431640625e-07,
+                  "holm_rank": 2,
+                  "metric": "escape",
+                  "only_from": 21,
+                  "only_to": 0,
+                  "policy_revision_from": 1,
+                  "policy_revision_to": 2,
+                  "policy_sha256_from": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+                  "policy_sha256_to": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+                  "raw_p_value": 9.5367431640625e-07,
+                  "reject_null_after_correction": true,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.025,
+                  "discordant_pairs": 6,
+                  "exact_p_value": 0.03125,
+                  "holm_rank": 5,
+                  "metric": "escape",
+                  "only_from": 6,
+                  "only_to": 0,
+                  "policy_revision_from": 2,
+                  "policy_revision_to": 3,
+                  "policy_sha256_from": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+                  "policy_sha256_to": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+                  "raw_p_value": 0.03125,
+                  "reject_null_after_correction": false,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.008333333333333333,
+                  "discordant_pairs": 27,
+                  "exact_p_value": 1.4901161193847656e-08,
+                  "holm_rank": 1,
+                  "metric": "escape",
+                  "only_from": 27,
+                  "only_to": 0,
+                  "policy_revision_from": 1,
+                  "policy_revision_to": 3,
+                  "policy_sha256_from": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+                  "policy_sha256_to": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+                  "raw_p_value": 1.4901161193847656e-08,
+                  "reject_null_after_correction": true,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.05,
+                  "discordant_pairs": 4,
+                  "exact_p_value": 0.125,
+                  "holm_rank": 6,
+                  "metric": "overblock",
+                  "only_from": 0,
+                  "only_to": 4,
+                  "policy_revision_from": 1,
+                  "policy_revision_to": 2,
+                  "policy_sha256_from": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+                  "policy_sha256_to": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+                  "raw_p_value": 0.125,
+                  "reject_null_after_correction": false,
+                  "reject_null_at_alpha": false,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.016666666666666666,
+                  "discordant_pairs": 10,
+                  "exact_p_value": 0.001953125,
+                  "holm_rank": 4,
+                  "metric": "overblock",
+                  "only_from": 0,
+                  "only_to": 10,
+                  "policy_revision_from": 2,
+                  "policy_revision_to": 3,
+                  "policy_sha256_from": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025",
+                  "policy_sha256_to": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+                  "raw_p_value": 0.001953125,
+                  "reject_null_after_correction": true,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                },
+                {
+                  "adjusted_alpha": 0.0125,
+                  "discordant_pairs": 14,
+                  "exact_p_value": 0.0001220703125,
+                  "holm_rank": 3,
+                  "metric": "overblock",
+                  "only_from": 0,
+                  "only_to": 14,
+                  "policy_revision_from": 1,
+                  "policy_revision_to": 3,
+                  "policy_sha256_from": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab",
+                  "policy_sha256_to": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20",
+                  "raw_p_value": 0.0001220703125,
+                  "reject_null_after_correction": true,
+                  "reject_null_at_alpha": true,
+                  "total_pairs": 30
+                }
+              ],
+              "family_size": 6,
+              "family_wise_correction": "HOLM_BONFERRONI",
+              "inference_scope": "FIXED_HASH_BOUND_BENCHMARK_ONLY",
+              "interpretation": "Exact paired comparisons over this fixed hash-bound benchmark corpus; p-values are scoped diagnostics, not population-wide security significance.",
+              "method": "EXACT_TWO_SIDED_BINOMIAL_P_0_5",
+              "null_hypothesis": "DISCORDANT_DIRECTION_PROBABILITY_EQUALS_0_5",
+              "paired_by": "candidate_id"
+            },
+            "points": [
+              {
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 27,
+                  "observed": 0.9,
+                  "wilson_95": [
+                    0.7437891742081593,
+                    0.9654001112526658
+                  ]
+                },
+                "escapes": 27,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 0,
+                  "observed": 0.0,
+                  "wilson_95": [
+                    0.0,
+                    0.11351339317396876
+                  ]
+                },
+                "overblocks": 0,
+                "policy_revision": 1,
+                "policy_sha256": "7fd82d65ab69d3e7284ab4c401884b4fa90595231b88470c0af47922529c3cab"
+              },
+              {
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 6,
+                  "observed": 0.2,
+                  "wilson_95": [
+                    0.0950510717728987,
+                    0.3730569641314825
+                  ]
+                },
+                "escapes": 6,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 4,
+                  "observed": 0.13333333333333333,
+                  "wilson_95": [
+                    0.053096554840547455,
+                    0.296813266820363
+                  ]
+                },
+                "overblocks": 4,
+                "policy_revision": 2,
+                "policy_sha256": "a773e3eb3a22f5e07e872597604c67c4d7c066693447e1719b3a7762c2613025"
+              },
+              {
+                "escape_rate": {
+                  "denominator": 30,
+                  "numerator": 0,
+                  "observed": 0.0,
+                  "wilson_95": [
+                    0.0,
+                    0.11351339317396876
+                  ]
+                },
+                "escapes": 0,
+                "overblock_rate": {
+                  "denominator": 30,
+                  "numerator": 14,
+                  "observed": 0.4666666666666667,
+                  "wilson_95": [
+                    0.30232388907699753,
+                    0.638577003801267
+                  ]
+                },
+                "overblocks": 14,
+                "policy_revision": 3,
+                "policy_sha256": "1e73be4648ccf1a2c40a6539d3548e25b8ddfc2d199922557715f52f8bc45a20"
+              }
+            ],
+            "schema": "release-sentinel.coverage-comparison-receipt.v1"
+          },
+          "signature": {
+            "algorithm": "HMAC_SHA256_TEST_ONLY",
+            "key_id": "reference-comparison-test-key",
+            "payload_sha256": "b81955db2673ec376924d6152ce8b5c5a545b5dd718f2fd2afdafdb5b2b1eb6e",
+            "signature_b64": "14AzUweOxA9BJhto7kzyaBeAEvGoudMQJjAShxTVOH8="
+          }
+        }
+      }
+    }
+  },
+  "claim": "MULTI_CHALLENGE_SCOPED_GATE_GAP_MEASUREMENT",
+  "mode": "REFERENCE_OFFLINE",
+  "production_release_authority": "UNCHANGED",
+  "schema": "release-sentinel.coverage-reference-proof.v2"
+}

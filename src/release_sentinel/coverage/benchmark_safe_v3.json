@@ -1,0 +1,122 @@
+[
+  {
+    "operator_id": "direct-equality",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return requester_tenant == resource_tenant\n"
+  },
+  {
+    "operator_id": "alias-renaming",
+    "source": "def can_read(subject, owner):\n    if not isinstance(subject, str) or not isinstance(owner, str):\n        return False\n    if not subject or not owner:\n        return False\n    requester_tenant = subject\n    resource_tenant = owner\n    return requester_tenant == resource_tenant\n"
+  },
+  {
+    "operator_id": "reversed-equality",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return resource_tenant == requester_tenant\n"
+  },
+  {
+    "operator_id": "explicit-guard",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    valid = isinstance(requester_tenant, str) and isinstance(resource_tenant, str)\n    if not valid:\n        return False\n    if requester_tenant == \"\" or resource_tenant == \"\":\n        return False\n    if requester_tenant != resource_tenant:\n        return False\n    return True\n"
+  },
+  {
+    "operator_id": "result-binding",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    same_tenant = requester_tenant == resource_tenant\n    return same_tenant\n"
+  },
+  {
+    "operator_id": "helper-extraction",
+    "source": "def _same_tenant(left, right):\n    return left == right\n\ndef can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return _same_tenant(requester_tenant, resource_tenant)\n"
+  },
+  {
+    "operator_id": "double-negation",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return not (requester_tenant != resource_tenant)\n"
+  },
+  {
+    "operator_id": "tuple-equality",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return (requester_tenant,) == (resource_tenant,)\n"
+  },
+  {
+    "operator_id": "branch-form",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    if requester_tenant == resource_tenant:\n        return True\n    return False\n"
+  },
+  {
+    "operator_id": "local-helper",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    def equal(left, right):\n        return left == right\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return equal(requester_tenant, resource_tenant)\n"
+  },
+  {
+    "operator_id": "boolean-wrapper",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return bool(requester_tenant == resource_tenant)\n"
+  },
+  {
+    "operator_id": "conditional-expression",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return True if requester_tenant == resource_tenant else False\n"
+  },
+  {
+    "operator_id": "inequality-guard-return",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    if requester_tenant != resource_tenant:\n        return False\n    return True\n"
+  },
+  {
+    "operator_id": "redundant-length-check",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return len(requester_tenant) == len(resource_tenant) and requester_tenant == resource_tenant\n"
+  },
+  {
+    "operator_id": "full-slice",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return requester_tenant[:] == resource_tenant[:]\n"
+  },
+  {
+    "operator_id": "concat-empty",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return requester_tenant + \"\" == resource_tenant + \"\"\n"
+  },
+  {
+    "operator_id": "fstring-identity",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return f\"{requester_tenant}\" == f\"{resource_tenant}\"\n"
+  },
+  {
+    "operator_id": "format-identity",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return \"{}\".format(requester_tenant) == \"{}\".format(resource_tenant)\n"
+  },
+  {
+    "operator_id": "join-identity",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return \"\".join([requester_tenant]) == \"\".join([resource_tenant])\n"
+  },
+  {
+    "operator_id": "tuple-unpack",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    left, right = requester_tenant, resource_tenant\n    return left == right\n"
+  },
+  {
+    "operator_id": "nested-guard",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if isinstance(requester_tenant, str) and isinstance(resource_tenant, str):\n        if requester_tenant and resource_tenant:\n            return requester_tenant == resource_tenant\n    return False\n"
+  },
+  {
+    "operator_id": "validation-helper",
+    "source": "def _valid(value):\n    return isinstance(value, str) and bool(value)\n\ndef can_read(requester_tenant, resource_tenant):\n    if not _valid(requester_tenant) or not _valid(resource_tenant):\n        return False\n    return requester_tenant == resource_tenant\n"
+  },
+  {
+    "operator_id": "operator-eq",
+    "source": "import operator\n\ndef can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return operator.eq(requester_tenant, resource_tenant)\n"
+  },
+  {
+    "operator_id": "lambda-eq",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    equal = lambda left, right: left == right\n    return equal(requester_tenant, resource_tenant)\n"
+  },
+  {
+    "operator_id": "all-wrapper",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return all((requester_tenant == resource_tenant,))\n"
+  },
+  {
+    "operator_id": "not-any-inequality",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return not any((requester_tenant != resource_tenant,))\n"
+  },
+  {
+    "operator_id": "list-equality",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return [requester_tenant] == [resource_tenant]\n"
+  },
+  {
+    "operator_id": "mapping-equality",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return {\"tenant\": requester_tenant} == {\"tenant\": resource_tenant}\n"
+  },
+  {
+    "operator_id": "lexical-bounds",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    return requester_tenant <= resource_tenant and requester_tenant >= resource_tenant\n"
+  },
+  {
+    "operator_id": "copied-locals",
+    "source": "def can_read(requester_tenant, resource_tenant):\n    if not isinstance(requester_tenant, str) or not isinstance(resource_tenant, str):\n        return False\n    if not requester_tenant or not resource_tenant:\n        return False\n    subject = requester_tenant[:]\n    owner = resource_tenant[:]\n    return subject == owner\n"
+  }
+]
