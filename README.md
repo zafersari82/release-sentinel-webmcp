@@ -2,7 +2,7 @@
 
 > **The agent couldn't change the proof, so it had to change the software.**
 
-**▶ Live demo: `<LIVE_URL>`/arena** · [3-minute video](`<YOUTUBE_URL>`) · [Submission write-up](SUBMISSION.md)
+**▶ Live demo: https://release-sentinel-webmcp.onrender.com/arena** · [3-minute video](`<YOUTUBE_URL>`) · [Submission write-up](SUBMISSION.md)
 
 **New here?** Open the live demo and press **Run guided demo**. It replays the whole
 story in about 90 seconds with plain-language narration — no setup, no prior knowledge,
