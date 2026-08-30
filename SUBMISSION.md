@@ -2,7 +2,7 @@
 
 **Give an AI agent real power on your website without giving it the final word.**
 
-Live demo: `<LIVE_URL>` · Video: `<YOUTUBE_URL>` · Code: `<REPO_URL>`
+Live demo: https://release-sentinel-webmcp.onrender.com/arena · Video: `<YOUTUBE_URL>` · Code: https://github.com/zafersari82/release-sentinel-webmcp
 
 ---
 
